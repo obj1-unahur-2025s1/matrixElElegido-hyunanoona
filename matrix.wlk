@@ -5,58 +5,25 @@ object neo{
     method saltar(){
         energia = energia*0.5
     }
-    method vitalidad(){
-        return(
-            energia*0.1
-        )
-    }
-    method esElElegido(){
-        return(true)
-    }
+    method vitalidad() = energia*0.1
+        
+    method esElElegido() = true
 }
 
 object morfeo{
     var vitalidad = 8
     var estaDescansado = true
-    method vitalidad(){
-        return(
-            vitalidad
-        )
-    }
     method saltar(){
-        if(self.tieneVitalidad()){
-            self.disminuirVitalidad()
-        }
+        estaDescansado = not estaDescansado
+        vitalidad = (vitalidad -1).max(0)
     }
-    method tieneVitalidad(){
-        return(
-            vitalidad > 1
-        )
-    }
-    method disminuirVitalidad(){
-        if(estaDescansado){
-            estaDescansado = false
-        }
-        else{
-            estaDescansado = true
-        }
-        vitalidad = vitalidad - 1
-    }
-    method esElElegido(){
-        return(false)
-    }
+    method vitalidad() = vitalidad
+
+    method esElElegido() = false
 }
 
 object trinity{
-    method vitalidad(){
-        return(
-            0
-        )
-    }
+    method vitalidad() = 0
     method saltar(){}
-    method esElElegido(){
-        return(
-            false
-        )
-    }
+    method esElElegido() = false
 }

@@ -18,24 +18,19 @@ object nave{
       return(pasajeros)
     }
     method pasajeroDeMayorVitalidad(){
-        var mayorVida = pasajeros.first()
-        pasajeros.forEach{pasajero =>
-            if(pasajero.vitalidad() > mayorVida.vitalidad()){
-                mayorVida = pasajero
-            }
-        }
-        return(mayorVida)
+        return(
+            pasajeros.max{pasajero => pasajero.vitalidad()}
+        )
     }
+    method pasajeroDeMenorVitalidad(){
+        return(
+            pasajeros.min{pasajero => pasajero.vitalidad()}
+        )
+    }   
     method estaEquilibrada(){
-        var pasajeroConMasVitalidad = self.pasajeroDeMayorVitalidad()
-        var estaEquilibrado = true
-            pasajeros.forEach{ pasajero =>
-        if (pasajeroConMasVitalidad.vitalidad() > pasajero.vitalidad()*2) {
-            estaEquilibrado = false
-        }
-        pasajeroConMasVitalidad = pasajero
-        }
-        return(estaEquilibrado)
+        return(
+            self.pasajeroDeMayorVitalidad().vitalidad() < self.pasajeroDeMenorVitalidad().vitalidad() * 2
+        )
     }
     method estaElELegido(){
         return(
